@@ -1,5 +1,3 @@
-# TODO : Complete documentation and make main() betterz
-
 from copy import deepcopy
 from math import inf
 import platform
@@ -7,17 +5,17 @@ from os import system
 
 
 
-# Setting Clear Screen function
 if platform.system() == 'Windows':
-    clear = lambda : system('cls')
+    def clear():
+        system('cls')
 else:
-    clear = lambda : system('clear')
-
-
+    def clear():
+        system('clear')
 
 board = [[0,0,0],
          [0,0,0],
          [0,0,0]]
+
 player1 =  1
 player2 = -1
 null_move = [None, None]
@@ -49,11 +47,10 @@ def wins(state: list, player: int) -> bool:
         The player to be checked if they won or not
     """
 
-    # diagonal
     if  _allequal(player, state[0][0], state[1][1], state[2][2]) \
         or _allequal(player, state[0][2], state[1][1], state[2][0]):
         return True
-    # row and column
+
     for i in range(len(state)):
         if  _allequal(player, state[i][0], state[i][1], state[i][2]) \
             or _allequal(player, state[0][i], state[1][i], state[2][i]):
@@ -239,10 +236,10 @@ def main() -> None:
     current_player = player1
 
     while not game_end(board):
-        if current_player == comp_player: # AI
+        if current_player == comp_player:
             move = get_comp_move(board, difficulty, current_player)
         
-        else: # Human Player
+        else:
             clear()
             display(board)
             move = get_player_move()
@@ -250,8 +247,7 @@ def main() -> None:
         board = play_move(board, move, current_player)
         current_player *= -1
     
-    # After game loop
-    result = evaluate(board) # Final position
+    result = evaluate(board)
     
     if result == player1:
         clear()
