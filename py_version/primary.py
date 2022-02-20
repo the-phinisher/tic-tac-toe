@@ -1,4 +1,4 @@
-# TODO : Complete documentation
+# TODO : Complete documentation and make main() betterz
 
 from copy import deepcopy
 from math import inf
@@ -122,7 +122,7 @@ def possible_moves(state: list) -> list:
                 moves.append([x,y])
     return moves
 
-def state_with_move(state: list, move: list, player: int) -> list:
+def play_move(state: list, move: list, player: int) -> list:
     """
     Returns the board position with the specified move played
 
@@ -140,8 +140,9 @@ def state_with_move(state: list, move: list, player: int) -> list:
         The player playing the move
     """
 
-    state[move[0]][move[1]] = player
-    return state
+    new_state = state
+    new_state[move[0]][move[1]] = player
+    return new_state
 
 def minimax(state: list, depth: int, player: int) -> list:
     """
@@ -168,7 +169,7 @@ def minimax(state: list, depth: int, player: int) -> list:
         if player == player1:
             best = [null_move, -inf]
             for move in possible_moves(state):
-                next_state = state_with_move(deepcopy(state), move, player)
+                next_state = play_move(deepcopy(state), move, player)
                 tree_eval = minimax(next_state, depth - 1, -player)
                 if tree_eval[1] > best[1]:
                     best = [move, tree_eval[1]]
@@ -176,7 +177,7 @@ def minimax(state: list, depth: int, player: int) -> list:
         else:
             best = [null_move, inf]
             for move in possible_moves(state):
-                next_state = state_with_move(deepcopy(state), move, player)
+                next_state = play_move(deepcopy(state), move, player)
                 tree_eval = minimax(next_state, depth - 1, -player)
                 if tree_eval[1] < best[1]:
                     best = [move, tree_eval[1]]
@@ -197,6 +198,33 @@ def display(state: list) -> None:
         print(char[row[0]], "|", char[row[1]], "|", char[row[2]])
         print("---------")
 
+def get_comp_move(state: list, depth: int, player: int) -> list:
+    """
+    Returns the best move for the computer based on the given parameters
+
+    For a given board position, depth and the computer player returns the
+    best move by the minimax algorithm
+
+    Parameters
+    ----------
+    state : list
+        The state to be evaluated for best move
+    depth : int
+        The depth to which the minimax algorithm searches
+    player : int
+        The player whose move it is in the given state
+    """
+
+    evaluation = minimax(state, depth, player)
+    best_move = evaluation[0]
+    return best_move
+
+def get_player_move() -> list:
+    inp_string = input("Enter your move: ")
+    coords = inp_string.split(',')
+    move = [int(coord) for coord in coords]
+    return move
+
 
 
 def main() -> None:
@@ -212,29 +240,33 @@ def main() -> None:
 
     while not game_end(board):
         if current_player == comp_player: # AI
-            move = minimax(board, difficulty, current_player)[0]
+            move = get_comp_move(board, difficulty, current_player)
+        
         else: # Human Player
             clear()
             display(board)
-            input_move = str(input("Enter your move: ")).split(',')
-            move = [int(input_move[0]), int(input_move[1])]
+            move = get_player_move()
 
-        board = state_with_move(board, move, current_player)
+        board = play_move(board, move, current_player)
         current_player *= -1
     
+    # After game loop
     result = evaluate(board) # Final position
+    
     if result == player1:
         clear()
         display(board)
         print("Yay! you won")
+    
     elif result == 0:
         clear()
         display(board)
         print("You got a draw")
+    
     elif result == player2:
         clear()
         display(board)
-        print("Good luck next time")
+        print("You lost, good luck next time")
 
 if __name__ == "__main__":
     main()
