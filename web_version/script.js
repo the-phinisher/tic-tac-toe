@@ -118,7 +118,10 @@ function displayUpdate() {
 }
 
 function clickedCell(id) {
-    if (gameEnd) return 0
+    if (gameEnd) {
+        init()
+        return 0
+    }
 
     let difficulty = 10
     var x = Number(id[4])
