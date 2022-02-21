@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    place-items: center;
+    background-color: white;
+}
+
+#credit {
+    position:absolute;
+    text-align: center;
+    top: 12%;
+    font-size:25px;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    color: rgb(179, 178, 178);
+}
+
+.game {
+    background-color: rgb(193, 222, 231);
+    display: grid;
+    grid-template-columns: repeat(3, 15vh);
+}
+
+.game:hover {
+    cursor: pointer;
+}
+
+.cell {
+    display: grid;
+    place-items: center;
+    font-size: 100px;
+    color: darkslategray;
+    width: 15vh;
+    height: 15vh;
+    border: 3px solid white;
+    font-family:'Arial Narrow', Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+    position: absolute;
+    bottom: 15%;
+    color: darkslategray;
+    width: 20vw;
+    height: 8vh;
+    font-size: min(5vh,7vw);
+    border-radius: 0;
+    border: none;
+    background-color:rgb(183, 212, 221);
+    font-family: 'Arial Narrow', Arial, sans-serif;
+}
