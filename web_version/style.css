@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor:pointer;
     user-select: none;
 }
 
@@ -11,10 +10,12 @@ body {
     width: 100vw;
     height: 100vh;
     place-items: center;
+    background-color: white;
 }
 
 #credit {
     position:absolute;
+    text-align: center;
     top: 12%;
     font-size:25px;
     font-family: 'Arial Narrow', Arial, sans-serif;
@@ -27,6 +28,10 @@ body {
     grid-template-columns: repeat(3, 15vh);
 }
 
+.game:hover {
+    cursor: pointer;
+}
+
 .cell {
     display: grid;
     place-items: center;
@@ -36,4 +41,18 @@ body {
     height: 15vh;
     border: 3px solid white;
     font-family:'Arial Narrow', Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+    position: absolute;
+    bottom: 15%;
+    color: darkslategray;
+    width: 20vw;
+    height: 8vh;
+    font-size: min(5vh,7vw);
+    border-radius: 0;
+    border: none;
+    background-color:rgb(183, 212, 221);
+    font-family: 'Arial Narrow', Arial, sans-serif;
 }
