@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor:pointer;
+    user-select: none;
+}
+
+body {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    place-items: center;
+}
+
+#credit {
+    position:absolute;
+    top: 12%;
+    font-size:25px;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    color: rgb(179, 178, 178);
+}
+
+.game {
+    background-color: rgb(193, 222, 231);
+    display: grid;
+    grid-template-columns: repeat(3, 15vh);
+}
+
+.cell {
+    display: grid;
+    place-items: center;
+    font-size: 100px;
+    color: darkslategray;
+    width: 15vh;
+    height: 15vh;
+    border: 3px solid white;
+    font-family:'Arial Narrow', Arial, sans-serif;
+}
