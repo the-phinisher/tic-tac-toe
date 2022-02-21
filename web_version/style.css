@@ -56,3 +56,15 @@ button {
     background-color:rgb(183, 212, 221);
     font-family: 'Arial Narrow', Arial, sans-serif;
 }
+
+#reference {
+    position: absolute;
+    bottom: 10vh;
+    font-size: 2vh;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: slateblue;
+}
