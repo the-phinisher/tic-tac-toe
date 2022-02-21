@@ -17,7 +17,7 @@ body {
     position:absolute;
     text-align: center;
     top: 12%;
-    font-size:25px;
+    font-size:3vh;
     font-family: 'Arial Narrow', Arial, sans-serif;
     color: rgb(179, 178, 178);
 }
@@ -35,7 +35,7 @@ body {
 .cell {
     display: grid;
     place-items: center;
-    font-size: 100px;
+    font-size: 13vh;
     color: darkslategray;
     width: 15vh;
     height: 15vh;
