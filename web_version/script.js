@@ -130,7 +130,7 @@ function clickedCell(id) {
         board[x][y] = player1
         displayUpdate()
     } else {
-        console.log("Wrong Move")
+        wrongMove()
         return 0
     }
     if (!game_end(board)) {
@@ -169,4 +169,11 @@ function gameEnded() {
             document.getElementById('cell2'+i).style.color = "brown"
         }
     }
+}
+
+function wrongMove() {
+    document.getElementById('wrongMove').style.opacity = 1;
+    setTimeout(function() {
+        document.getElementById('wrongMove').style.opacity = 0;
+    }, 600)
 }

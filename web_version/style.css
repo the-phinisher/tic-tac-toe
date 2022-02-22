@@ -77,3 +77,16 @@ img {
     width: 4vh;
     height: 4vh;
 }
+
+#wrongMove {
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    top: 21vh;
+    height: 10vh;
+    width: 30vw;
+    font-size: 5vh;
+    font-weight:bold;
+    color: brown;
+    font-family: 'Arial Narrow', Arial, sans-serif;
+}
