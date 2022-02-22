@@ -9,10 +9,14 @@
     <title> Tic Tac Toe</title>
 </head>
 <body onload="init()">
-    <div id="credit">The Minimax Algorithm<br>Author: Gandhar Vabale</div>
+    <div id="credit">Minimax Algorithm<br>*Uses 1st party cookies*<br>Author: Gandhar Vabale</div>
     <div id="wrongMove">Wrong move</div>
     <input type="range" class="slider" id="difficultySlider" min="1" max="8" value="8" step="1" onchange="difficultyChange('difficultySlider')">
     <div id="difficultyDisplay"></div>
+    <label class="switch">
+        <input id="assistSwitch" type="checkbox" onchange="_assistSet('assistSwitch')">
+        <span class="switchSlider"></span>
+    </label>
     <div class="game">
         <div id="cell00" class="cell" onclick="clickedCell('cell00')"></div>
         <div id="cell01" class="cell" onclick="clickedCell('cell01')"></div>
