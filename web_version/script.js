@@ -1,4 +1,4 @@
-let board, player1, player2, gameEnd, difficulty;
+let board, player1, player2, gameEnd, difficulty, mobile;
 
 function _allequal(a, b, c, d) {
     if (a === b && a === c && a === d) return true
@@ -185,8 +185,8 @@ function difficultyChange(id) {
 }
 
 function sliderPosition() {
-    display = document.getElementById('difficultyDisplay')
-    root = document.querySelector(':root')
+    let display = document.getElementById('difficultyDisplay')
+    let root = document.querySelector(':root')
     mobile = window.innerWidth < window.innerHeight
     if (mobile) {
         root.style.setProperty('--difficulty-right', 'none')
