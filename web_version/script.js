@@ -1,4 +1,4 @@
-let board, player1, player2, gameEnd;
+let board, player1, player2, gameEnd, difficulty;
 
 function _allequal(a, b, c, d) {
     if (a === b && a === c && a === d) return true
@@ -14,6 +14,8 @@ function init() {
     player1 =  1
     player2 = -1
     gameEnd = false
+    difficultyChange('difficultySlider')
+    sliderPosition()
     for (let element of document.getElementsByClassName('cell')) {
         element.style.color = "darkslategray"
     }
@@ -123,7 +125,6 @@ function clickedCell(id) {
         return 0
     }
 
-    let difficulty = 10
     var x = Number(id[4])
     var y = Number(id[5])
     if (board[x][y] == 0) {
@@ -176,4 +177,24 @@ function wrongMove() {
     setTimeout(function() {
         document.getElementById('wrongMove').style.opacity = 0;
     }, 600)
+}
+
+function difficultyChange(id) {
+    difficulty = document.getElementById(id).value
+    document.getElementById('difficultyDisplay').innerText = difficulty
+}
+
+function sliderPosition() {
+    display = document.getElementById('difficultyDisplay')
+    root = document.querySelector(':root')
+    mobile = window.innerWidth < window.innerHeight
+    if (mobile) {
+        root.style.setProperty('--difficulty-right', 'none')
+        root.style.setProperty('--difficulty-top', '86vh')
+        display.style.opacity = '0'
+    } else {
+        root.style.setProperty('--difficulty-right', '7vw')
+        root.style.setProperty('--difficulty-top', '10vh')
+        display.style.opacity = '1'
+    }
 }
