@@ -16,7 +16,7 @@ body {
 #credit {
     position:absolute;
     text-align: center;
-    top: 12%;
+    top: 12vh;
     font-size:3vh;
     font-family: 'Arial Narrow', Arial, sans-serif;
     color: rgb(179, 178, 178);
@@ -46,7 +46,7 @@ body {
 button {
     cursor: pointer;
     position: absolute;
-    bottom: 15%;
+    bottom: 15vh;
     color: darkslategray;
     width: 20vw;
     height: 8vh;
