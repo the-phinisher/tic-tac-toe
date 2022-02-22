@@ -1,4 +1,4 @@
-let board, player1, player2, gameEnd, difficulty, mobile;
+let assist, winboard, player1, player2, gameEnd, difficulty, mobile;
 
 function _allequal(a, b, c, d) {
     if (a === b && a === c && a === d) return true
@@ -11,6 +11,7 @@ function _deepcopy(item) {
 
 function init() {
     board = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    assist = true
     player1 =  1
     player2 = -1
     gameEnd = false
@@ -20,6 +21,7 @@ function init() {
         element.style.color = "darkslategray"
     }
     displayUpdate()
+    if (assist) __clearEvaluations()
 }
 
 function wins(state, player) {
@@ -104,6 +106,51 @@ function minimax(state, depth, player) {
 	return best;
 }
 
+// In testing Do Not Use
+function __deep_evaluation(state, depth, player) {
+	var evaluations = []
+    if (depth == 0 || game_end(state)) {
+		var score = evaluate(state);
+		return [NaN, NaN, score];
+	}
+
+	possible_moves(state).forEach(function (cell) {
+		var x = cell[0];
+		var y = cell[1];
+		state[x][y] = player;
+		var score = minimax(state, depth - 1, -player);
+		state[x][y] = 0;
+		score[0] = x;
+		score[1] = y;
+        evaluations.push(score)
+	});
+
+	return evaluations;
+}
+
+function __toScreen(evaluations) {
+    for (let evaluation of evaluations) {
+        var x = evaluation[0]
+        var y = evaluation[1]
+        var score = evaluation[2]
+        var id = 'cell'+x+y
+        if (score == 1) {
+            document.getElementById(id).style.backgroundColor = 'rgba(0,255,0,0.3)'
+        } else if (score == -1) {
+            document.getElementById(id).style.backgroundColor = 'rgba(255,0,0,0.3)'
+        }
+    }
+}
+
+function __clearEvaluations() {
+    for (let x = 0; x <= 2; x++) {
+        for (let y = 0; y <= 2; y++) {
+            var id = 'cell'+x+y
+            document.getElementById(id).style.backgroundColor = 'rgba(0,0,0,0)'
+        }
+    }
+}
+
 function displayUpdate() {
     for (let x = 0; x <= 2; x++) {
         for (let y = 0; y <= 2; y++) {
@@ -138,6 +185,11 @@ function clickedCell(id) {
         best = minimax(board, difficulty, player2)
         board[best[0]][best[1]] = player2
         displayUpdate()
+        if (!game_end(board) && assist) {
+            __clearEvaluations()
+            var evaluations = __deep_evaluation(board, 9, player1)
+            __toScreen(evaluations)
+        }
     }
     if (game_end(board)) {
         gameEnded()
