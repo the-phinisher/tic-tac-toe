@@ -5,6 +5,10 @@
     user-select: none;
 }
 
+*::selection {
+    background-color: none;
+}
+
 body {
     display: grid;
     width: 100vw;
