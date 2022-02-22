@@ -1,12 +1,18 @@
+:root {
+    --difficulty-right: var(--comp-right);
+    --difficulty-top: var(--comp-top);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 *::selection {
-    background-color: none;
+    background-color: rgba(255,255,255,0);
 }
 
 body {
@@ -89,4 +95,54 @@ img {
     font-weight:bold;
     color: brown;
     font-family: 'Arial Narrow', Arial, sans-serif;
+}
+
+#difficultySlider {
+    position: absolute;
+    right: var(--difficulty-right);
+    top: var(--difficulty-top);
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 22vh;
+    height: 15px;
+    border-radius: 5px;  
+    background: #e3e3e3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+  
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: rgb(143, 203, 221);
+    cursor: pointer;
+}
+  
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgb(143, 203, 221);
+    cursor: pointer;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+#difficultyDisplay {
+    position:absolute;
+    right: calc(var(--difficulty-right) + 8vh);
+    top: calc(var(--difficulty-top) + 5vh); 
+    font-family: monospace;
+    font-size:10vh;
+    font-weight: bolder;
+    color:#a3a3a3;
 }
