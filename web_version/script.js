@@ -150,9 +150,13 @@ function minimax(state, depth, player) {
 		if (player == player1) {
 			if (score[2] > best[2])
 				best = score;
+			else if (score[2] == best[2] && Math.random() < 0.8)
+				best = score;
 		}
 		else {
 			if (score[2] < best[2])
+				best = score;
+			else if (score[2] == best[2] && Math.random() < 0.8)
 				best = score;
 		}
 	});
