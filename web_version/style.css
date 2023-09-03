@@ -107,6 +107,7 @@ img {
 
 .slider {
     -webkit-appearance: none;
+    appearance: none;
     width: 22vh;
     height: 15px;
     border-radius: 5px;  
